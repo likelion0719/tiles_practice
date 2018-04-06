@@ -1,3 +1,34 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<script>
+	function submitMenu(menu) {
+		
+		if (menu === "main") {
+			location.href = "main.do?pageName=main";
+		} else if (menu === "charts"){
+			location.href = "charts.do?pageName=charts"
+		} else if (menu === "ui") {
+			location.href = "ui.do?pageName=ui";
+		} else if (menu === "forms") {
+			location.href = "forms.do?pageName=forms";
+		} else if (menu === "tables") {
+			location.href = "tables.do?pageName=tables";
+		}
+	}
+	
+	$(function(){
+		var pageName = "<c:out value="${param.pageName}"/>";
+		
+		if (pageName !== "") {
+		$(".menu").removeClass("current");
+		$("#"+pageName).addClass("current");
+		} else {
+			$("#main").addClass("current");
+		}
+	})
+</script>
+
 <!-- Sidebar -->
 			<div class="sidebar">
 				<div class="sidebar-dropdown"><a href="#">Navigation</a></div>
@@ -13,7 +44,7 @@
 					<ul class="navi">
 						<!-- Use the class nred, ngreen, nblue, nlightblue, nviolet or norange to add background color. You need to use this in <li> tag. -->
 
-						<li class="nred current"><a href="main.do"><i class="fa fa-desktop"></i> Dashboard</a></li>
+						<li id="main" class="menu nred"><a href="#" onclick="submitMenu('main')"><i class="fa fa-desktop"></i> Dashboard</a></li>
 						<!-- Menu with sub menu -->
 						<li class="has_submenu nlightblue">
 							<a href="#">
@@ -27,8 +58,8 @@
 								<li><a href="widgets2.do">Widgets #2</a></li>
 							</ul>
 						</li>
-						<li class="ngreen"><a href="charts.do"><i class="fa fa-bar-chart-o"></i> Charts</a></li>
-						<li class="norange"><a href="ui.do"><i class="fa fa-sitemap"></i> UI Elements</a></li>
+						<li id ="charts" class="menu ngreen"><a href="#" onclick="submitMenu('charts')"><i class="fa fa-bar-chart-o"></i> Charts</a></li>
+						<li id ="ui" class="menu norange"><a href="#" onclick="submitMenu('ui')"><i class="fa fa-sitemap"></i> UI Elements</a></li>
 						<li class="has_submenu nviolet">
 							<a href="#">
 								<i class="fa fa-file-o"></i> Pages #1
@@ -58,8 +89,8 @@
 								<li><a href="profile.do">Profile</a></li>
 							</ul>
 						</li> 
-						<li class="nred"><a href="forms.do"><i class="fa fa-list"></i> Forms</a></li>
-						<li class="nlightblue"><a href="tables.do"><i class="fa fa-table"></i> Tables</a></li>
+						<li id="forms" class="menu nred"><a href="#" onclick="submitMenu('forms')"><i class="fa fa-list"></i> Forms</a></li>
+						<li id="tables" class="menu nlightblue"><a href="#" onclick="submitMenu('tables')"><i class="fa fa-table"></i> Tables</a></li>
 					</ul>
 					<!--/ Sidebar navigation -->
 

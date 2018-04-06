@@ -1,3 +1,11 @@
+<!-- Star rating -->
+		<link rel="stylesheet" href="css/rateit.css">
+		<!-- Date picker -->
+		<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+<!-- Bootstrap toggle -->
+		<link rel="stylesheet" href="css/bootstrap-switch.css">
+
+
 <!-- Main bar -->
 			<div class="mainbar">
 				<!-- Page heading -->

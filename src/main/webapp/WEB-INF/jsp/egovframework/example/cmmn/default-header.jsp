@@ -26,3 +26,5 @@
 		
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="#">
+		
+		<script src="js/jquery.js" type="text/javascript"></script>
