@@ -2,22 +2,65 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script>
-	function submitMenu(menu) {
+	/* function submitMenu(menu) {
 		
 		if (menu === "main") {
-			location.href = "main.do?pageName=main";
+			//location.href = "main.do?pageName=main";
+			
 		} else if (menu === "charts"){
-			location.href = "charts.do?pageName=charts"
+			//location.href = "charts.do?pageName=charts"
+					
 		} else if (menu === "ui") {
-			location.href = "ui.do?pageName=ui";
+			//location.href = "ui.do?pageName=ui";
+			
 		} else if (menu === "forms") {
-			location.href = "forms.do?pageName=forms";
+			//location.href = "forms.do?pageName=forms";
+			
 		} else if (menu === "tables") {
-			location.href = "tables.do?pageName=tables";
+			//location.href = "tables.do?pageName=tables";
+			
 		}
+	} */
+	var left = {
+			submitMenu : function(menu) {
+				if (menu === "main") {
+					
+					//location.href = "main.do?pageName=main";
+					$("#frm").attr("action","main.do");
+					$("#pageName").val(menu);					
+				} else if (menu === "charts"){
+					//location.href = "charts.do?pageName=charts"
+					$("#frm").attr("action","charts.do");
+					$("#pageName").val(menu);		
+				} else if (menu === "ui") {
+					
+					//location.href = "ui.do?pageName=ui";
+					$("#frm").attr("action","ui.do");
+					$("#pageName").val(menu);
+				} else if (menu === "forms") {
+					
+					//location.href = "forms.do?pageName=forms";
+					$("#frm").attr("action","forms.do");
+					$("#pageName").val(menu);
+				} else if (menu === "tables") {
+					
+					//location.href = "tables.do?pageName=tables";
+					$("#frm").attr("action","tables.do");
+					$("#pageName").val(menu);
+				}
+				
+				$("#frm").submit();
+			}
 	}
 	
 	$(function(){
+		//클릭한 li 선택자 가져오기
+		$(".menu").click(function () {
+			var pageName = $(this).attr("id");
+			left.submitMenu(pageName);
+		})
+		
+		//하이라이트 처리부분
 		var pageName = "<c:out value="${param.pageName}"/>";
 		
 		if (pageName !== "") {
@@ -44,9 +87,9 @@
 					<ul class="navi">
 						<!-- Use the class nred, ngreen, nblue, nlightblue, nviolet or norange to add background color. You need to use this in <li> tag. -->
 
-						<li id="main" class="menu nred"><a href="#" onclick="submitMenu('main')"><i class="fa fa-desktop"></i> Dashboard</a></li>
+						<li id="main" class="menu nred"><a href="#" ><i class="fa fa-desktop"></i> Dashboard</a></li>
 						<!-- Menu with sub menu -->
-						<li class="has_submenu nlightblue">
+						<li id="widgets" class="has_submenu nlightblue">
 							<a href="#">
 								<!-- Menu name with icon -->
 								<i class="fa fa-th"></i> Widgets 
@@ -58,8 +101,8 @@
 								<li><a href="widgets2.do">Widgets #2</a></li>
 							</ul>
 						</li>
-						<li id ="charts" class="menu ngreen"><a href="#" onclick="submitMenu('charts')"><i class="fa fa-bar-chart-o"></i> Charts</a></li>
-						<li id ="ui" class="menu norange"><a href="#" onclick="submitMenu('ui')"><i class="fa fa-sitemap"></i> UI Elements</a></li>
+						<li id ="charts" class="menu ngreen"><a href="#" ><i class="fa fa-bar-chart-o"></i> Charts</a></li>
+						<li id ="ui" class="menu norange"><a href="#" ><i class="fa fa-sitemap"></i> UI Elements</a></li>
 						<li class="has_submenu nviolet">
 							<a href="#">
 								<i class="fa fa-file-o"></i> Pages #1
@@ -89,8 +132,8 @@
 								<li><a href="profile.do">Profile</a></li>
 							</ul>
 						</li> 
-						<li id="forms" class="menu nred"><a href="#" onclick="submitMenu('forms')"><i class="fa fa-list"></i> Forms</a></li>
-						<li id="tables" class="menu nlightblue"><a href="#" onclick="submitMenu('tables')"><i class="fa fa-table"></i> Tables</a></li>
+						<li id="forms" class="menu nred"><a href="#" ><i class="fa fa-list"></i> Forms</a></li>
+						<li id="tables" class="menu nlightblue"><a href="#" ><i class="fa fa-table"></i> Tables</a></li>
 					</ul>
 					<!--/ Sidebar navigation -->
 
@@ -99,5 +142,8 @@
 						<div id="todaydate"></div>
 					</div>
 				</div>
+				<form id="frm" action="" method="post">
+					<input type="hidden" id="pageName" name ="pageName">
+				</form>
 			</div>
 			<!-- Sidebar ends -->
